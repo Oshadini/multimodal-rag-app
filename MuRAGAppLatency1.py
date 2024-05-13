@@ -334,11 +334,7 @@ if uploaded_file is not None:
       return retriever
     
 
-    vectorstore = Chroma(collection_name="mm_rag_mistral03",embedding_function=OpenAIEmbeddings(openai_api_key = openai.api_key))
 
-    
-    # Create retreiver
-    retriever_multi_vector_img=create_multi_vector_retriever(vectorstore,text_summaries,texts,table_summaries,tables,image_summaries,img_base64_list)
 
     
     def looks_like_base64(sb):
@@ -462,12 +458,16 @@ if uploaded_file is not None:
         return chain
     
 
-    chain_multimodal_rag = multi_modal_rag_chain(retriever_multi_vector_img)
+    
     
      
     
     question = st.text_input('Enter a question')
     if st.button("Submit"): #if(question):
+        vectorstore = Chroma(collection_name="mm_rag_mistral03",embedding_function=OpenAIEmbeddings(openai_api_key = openai.api_key))
+        # Create retreiver
+        retriever_multi_vector_img=create_multi_vector_retriever(vectorstore,text_summaries,texts,table_summaries,tables,image_summaries,img_base64_list)
+        chain_multimodal_rag = multi_modal_rag_chain(retriever_multi_vector_img)
         docs = retriever_multi_vector_img.get_relevant_documents(question, limit=1)
         st.write(docs)
         response= chain_multimodal_rag.invoke(question)

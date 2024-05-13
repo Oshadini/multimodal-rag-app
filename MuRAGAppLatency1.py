@@ -41,7 +41,9 @@ from IPython.display import HTML, display
 from langchain.schema.runnable import RunnableLambda, RunnablePassthrough
 from PIL import Image
 from langchain.chat_models import ChatOpenAI
-    
+from chromadb.config import Settings
+
+
 
 
 os.environ["LANGCHAIN_TRACING_V2"] = "true"
@@ -333,8 +335,11 @@ if uploaded_file is not None:
           add_documents(retriever, image_summaries, images)
       return retriever
     
-
-
+    
+    client = chromadb.Client(Settings(chroma_db_impl="duckdb+parquet",
+                                        persist_directory="./db"
+                                    ))  
+    
 
     
     def looks_like_base64(sb):
@@ -489,7 +494,8 @@ if uploaded_file is not None:
               #img.show()
               #img = load_image(image_data)
               st.image(image_data)
-              found_image = True  # Set the flag to True to indicate that an image has been found 
+              found_image = True  # Set the flag to True to indicate that an image has been found
+    collection = client.create_collection(name="mm_rag_mistral03")
           
     
     

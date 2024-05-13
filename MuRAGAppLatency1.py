@@ -337,7 +337,7 @@ if uploaded_file is not None:
       return retriever
     
 
-    vectorstore = Chroma(collection_name="mm_rag_mistral02",embedding_function=OpenAIEmbeddings(openai_api_key = openai.api_key))
+    vectorstore = Chroma(collection_name="mm_rag_mistral03",embedding_function=OpenAIEmbeddings(openai_api_key = openai.api_key))
 
     
     # Create retreiver

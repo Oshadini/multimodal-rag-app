@@ -98,7 +98,7 @@ if uploaded_file is not None:
        
         image_path = "./"
 
-        @st.cache_data(show_spinner=False)
+        #@st.cache_data(show_spinner=False)
         def pdf_ele(image_path,ele_path):
             pdf_elements = partition_pdf(
                 ele_path,
@@ -125,7 +125,7 @@ if uploaded_file is not None:
         pdf_elements = st.session_state["pdf_elements"]        
 
     # Categorize elements by type
-    @st.cache_data(show_spinner=False)
+    #@st.cache_data(show_spinner=False)
     def categorize_elements(_raw_pdf_elements):
       """
       Categorize extracted elements from a PDF into tables and texts.
@@ -157,7 +157,7 @@ if uploaded_file is not None:
     
 
     # Generate summaries of text elements
-    @st.cache_data(show_spinner=False)
+    #@st.cache_data(show_spinner=False)
     def generate_text_summaries(texts, tables, summarize_texts=False):
       """
       Summarize text elements
@@ -226,12 +226,12 @@ if uploaded_file is not None:
     
     
 
-    @st.cache_data(show_spinner=False)
+    #@st.cache_data(show_spinner=False)
     def encode_image(image_path):
       """Getting the base64 string"""
       with open(image_path, "rb") as image_file:
           return base64.b64encode(image_file.read()).decode("utf-8")
-    @st.cache_data(show_spinner=False)
+   # @st.cache_data(show_spinner=False)
     def image_summarize(img_base64, prompt):
       """Make image summary"""
       if immage_sum_model == 'gpt-4-vision-preview':
@@ -256,7 +256,7 @@ if uploaded_file is not None:
       )
       return msg.content
     
-    @st.cache_data(show_spinner=False)
+    #@st.cache_data(show_spinner=False)
     def generate_img_summaries(path):
         """
         Generate summaries and base64 encoded strings for images

@@ -285,7 +285,7 @@ if uploaded_file is not None:
         return img_base64_list, image_summaries
 
     fpath= './figures'
-    if 'img_base64_list' not in st.session_state or 'image_summaries' not in st.session_state:
+    if 'image_summaries' not in st.session_state:
         with st.spinner("Generating Images summaries......"):
             img_base64_list, image_summaries = generate_img_summaries(fpath)
 

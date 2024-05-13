@@ -471,11 +471,13 @@ if uploaded_file is not None:
     
     question = st.text_input('Enter a question')
     if st.button("Submit"): #if(question):
+        docs = retriever_multi_vector_img.get_relevant_documents(question, limit=2)
+        st.write(docs)
         response= chain_multimodal_rag.invoke(question)
         st.write(response)
 
 
-        docs = retriever_multi_vector_img.get_relevant_documents(question, limit=2)
+        
         found_image = False  # Flag variable to track if an image has been found
     
         for i in range(len(docs)):

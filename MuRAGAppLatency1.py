@@ -107,12 +107,9 @@ if uploaded_file is not None:
                 extract_images_in_pdf=True,
                 infer_table_structure=True,
                 strategy='hi_res',
-                max_characters=5200,
-                new_after_n_chars=5000,
-                combine_text_under_n_chars=4200,
-                #max_characters=3200,
-                #new_after_n_chars=3000,
-                #combine_text_under_n_chars=2200,
+                max_characters=3200,
+                new_after_n_chars=3000,
+                combine_text_under_n_chars=2200,
                 image_output_dir_path=image_path
             )
             return pdf_elements
@@ -471,7 +468,7 @@ if uploaded_file is not None:
     
     question = st.text_input('Enter a question')
     if st.button("Submit"): #if(question):
-        docs = retriever_multi_vector_img.get_relevant_documents(question, limit=2)
+        docs = retriever_multi_vector_img.get_relevant_documents(question, limit=1)
         st.write(docs)
         response= chain_multimodal_rag.invoke(question)
         st.write(response)

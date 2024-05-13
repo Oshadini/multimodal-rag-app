@@ -296,7 +296,7 @@ if uploaded_file is not None:
         img_base64_lists = st.session_state["img_base64_list"]  
         image_summaries = st.session_state["image_summaries"]  
     
-    @st.cache_resource(show_spinner=False)
+ 
     def create_multi_vector_retriever(
       _vectorstore, text_summaries, texts, table_summaries, tables, image_summaries, images
     ):

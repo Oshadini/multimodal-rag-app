@@ -214,8 +214,8 @@ if uploaded_file is not None:
         # Create session state variables
         with st.spinner("Generating Text & Table summaries....."):    
             text_summaries, table_summaries = generate_text_summaries(texts, tables, summarize_texts=True)
-            st.session_state["text_summaries"] = text_summaries
-            st.session_state["table_summaries"] = table_summaries
+        st.session_state["text_summaries"] = text_summaries
+        st.session_state["table_summaries"] = table_summaries
         st.write(f"{bullet_point} \t\tText & Table summaries generation completed")     
     else:
         # Use already populated session state variables

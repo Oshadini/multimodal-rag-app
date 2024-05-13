@@ -475,7 +475,7 @@ if uploaded_file is not None:
         st.write(response)
 
 
-        docs = retriever_multi_vector_img.get_relevant_documents(question, limit=1)
+        docs = retriever_multi_vector_img.get_relevant_documents(question, limit=2)
         found_image = False  # Flag variable to track if an image has been found
     
         for i in range(len(docs)):

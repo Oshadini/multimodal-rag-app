@@ -42,7 +42,7 @@ from langchain.schema.runnable import RunnableLambda, RunnablePassthrough
 from PIL import Image
 from langchain.chat_models import ChatOpenAI
 from chromadb.config import Settings
-
+import chromadb
 
 
 
@@ -336,10 +336,7 @@ if uploaded_file is not None:
       return retriever
     
     
-    client = chromadb.Client(Settings(chroma_db_impl="duckdb+parquet",
-                                        persist_directory="./db"
-                                    ))  
-    
+    client = chromadb.Client()
 
     
     def looks_like_base64(sb):
@@ -495,7 +492,7 @@ if uploaded_file is not None:
               #img = load_image(image_data)
               st.image(image_data)
               found_image = True  # Set the flag to True to indicate that an image has been found
-    collection = client.create_collection(name="mm_rag_mistral03")
+    client.delete_collection("mm_rag_mistral03")
           
     
     

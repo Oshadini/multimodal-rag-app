@@ -298,7 +298,7 @@ if uploaded_file is not None:
     
  
     def create_multi_vector_retriever(
-      _vectorstore, text_summaries, texts, table_summaries, tables, image_summaries, images
+      vectorstore, text_summaries, texts, table_summaries, tables, image_summaries, images
     ):
       """
       Create retriever that indexes summaries, but returns raw images or texts
@@ -310,7 +310,7 @@ if uploaded_file is not None:
     
       # Create the multi-vector retriever
       retriever = MultiVectorRetriever(
-          vectorstore=_vectorstore,
+          vectorstore=vectorstore,
           docstore=store,
           id_key=id_key,
       )

@@ -181,11 +181,13 @@ if uploaded_file is not None:
         model = ChatOpenAI(
           temperature=0, model= "gpt-4-turbo", openai_api_key = openai.api_key, max_tokens=1024)
 
-      else:
+      elif time_hist_color == 'gemini-1.5-pro-latest':
         model = ChatGoogleGenerativeAI(
             #temperature=0, model="gemini-pro", max_output_tokens=1024
           temperature=0, model="gemini-1.5-pro-latest", max_output_tokens=1024
         )
+      else:
+        model = ChatOpenAI(model="gpt-4o", openai_api_key = openai.api_key, max_tokens=1024)
 
       summarize_chain = {"element": lambda x: x} | prompt | model | StrOutputParser()
 
@@ -236,9 +238,11 @@ if uploaded_file is not None:
       if immage_sum_model == 'gpt-4-vision-preview':
         model = ChatOpenAI(
           temperature=0, model=immage_sum_model, openai_api_key = openai.api_key, max_tokens=1024)
-      else:
+      elif immage_sum_model == 'gemini-1.5-pro-latest':
         #model = ChatGoogleGenerativeAI(model="gemini-pro-vision", max_output_tokens=1024)
         model = ChatGoogleGenerativeAI(model="gemini-1.5-pro-latest", max_output_tokens=1024)
+      else:
+        model = ChatOpenAI(model="gpt-4o", openai_api_key = openai.api_key, max_tokens=1024)
     
       msg = model(
           [
@@ -440,11 +444,14 @@ if uploaded_file is not None:
 
         if generation_model == 'gemini-1.5-pro-latest':
             model = ChatGoogleGenerativeAI(model="gemini-1.5-pro-latest",max_output_tokens=1024)
-        else:
+        elif generation_model == 'gpt-4-vision-preview':
             try:
               model = ChatOpenAI(model="gpt-4-vision-preview", openai_api_key = openai.api_key, max_tokens=1024)
             except Exception as e:
               model = ChatOpenAI(model="gpt-4-turbo", openai_api_key = openai.api_key, max_tokens=1024)
+        else:
+            model = ChatOpenAI(model="gpt-4o", openai_api_key = openai.api_key, max_tokens=1024)
+
 
         # RAG pipeline
         chain = (

@@ -62,16 +62,16 @@ with open('style.css') as f:
 st.sidebar.header('Multi-Modal RAG App`PDF`')
 
 st.sidebar.subheader('Text Summarization Model')
-time_hist_color = st.sidebar.selectbox('Summarize by', ('gpt-4-turbo', 'gemini-1.5-pro-latest', 'llama3'))
+time_hist_color = st.sidebar.selectbox('Summarize by', ('gpt-4-turbo', 'gemini-1.5-pro-latest', 'gpt-4o','llama3'))
 
 st.sidebar.subheader('Image Summarization Model')
-immage_sum_model = st.sidebar.selectbox('Summarize by', ('gpt-4-vision-preview', 'gemini-1.5-pro-latest'))
+immage_sum_model = st.sidebar.selectbox('Summarize by', ('gpt-4-vision-preview', 'gemini-1.5-pro-latest','gpt-4o'))
 
 #st.sidebar.subheader('Embedding Model')
 #embedding_model = st.sidebar.selectbox('Select data', ('OpenAIEmbeddings', 'GoogleGenerativeAIEmbeddings'))
 
 st.sidebar.subheader('Response Generation Model')
-generation_model = st.sidebar.selectbox('Select data', ('gpt-4-vision-preview', 'gemini-1.5-pro-latest'))
+generation_model = st.sidebar.selectbox('Select data', ('gpt-4-vision-preview', 'gemini-1.5-pro-latest','gpt-4o'))
 
 
 max_concurrecy = st.sidebar.slider('Maximum Concurrency', 3, 4, 7)
